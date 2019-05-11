@@ -31,12 +31,12 @@ public class LRUList  {
          if(null==nodeq){//如果没有找到
              System.out.println("缓存中没有查到数据，将从数据库中查找");
              if(count>=this.MAX_SIZE){//缓存满了
-                 nodeh.next=null;//删除最后的节点
+                 nodeh=null;//删除最后的节点
                  LinkList<User> linkList = new LinkList<>();
                  System.out.println("缓存数据已满，进行清除！");
                  linkList.value= new User("存满了添加缓存",1,1);
-                 linkList.next=LRU;
-                 LRU=linkList;
+                 linkList.next=LRU.next;
+                 LRU.next=linkList;
                  show();
              return linkList.value;
              }else{//没有存满
